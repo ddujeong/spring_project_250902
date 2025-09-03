@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ddu.project.dao.ReserveDao">
+
+	<insert id="reserveDao">
+		INSERT INTO reservetbl(rid, machine, rdatetime, memberid) VALUES(RESERVE_SEQ.nextval, #{param1}, #{param2},#{param3})
+	</insert>
+	
+	<select id="reserveListDao" resultType="com.ddu.project.dto.ReserveDto">
+		SELECT rid, machine, rdatetime, status, memberid FROM reservetbl WHERE memberid=#{param1} ORDER BY rdatetime DESC
+	</select>
+	
+	<delete id="reserveDeleteDao">
+		DELETE FROM reservetbl WHERE rid=#{param1}
+	</delete>
+	
+	<select id="reserveCheckDao" resultType="int">
+		SELECT COUNT(*) FROM reservetbl WHERE machine=#{param1} AND rdatetime=#{param2}
+	</select>
+
+	<select id="getReservedTimes" resultType="String">
+    SELECT TO_CHAR(rdatetime, 'HH24:MI') AS reserved_time
+    FROM reservetbl
+    WHERE machine = #{param1}
+    AND TRUNC(rdatetime) = TO_DATE(#{param2}, 'YYYY-MM-DD')
+	</select>
+</mapper>

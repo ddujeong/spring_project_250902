@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ddu.project.dao.NoticeDao">
+
+<insert id="boardWriteDao">
+	INSERT INTO noticetbl(bnum,btitle, memberid, bcontent) VALUES(NOTICE_SEQ.nextval,#{param1},#{param2},#{param3})
+</insert>
+
+<select id="boardListDao" resultType="com.ddu.project.dto.NoticeDto">
+	SELECT * FROM noticetbl
+</select>
+
+<select id="allCountDao" resultType="int">
+    		SELECT COUNT(*) FROM noticetbl
+</select>
+
+<resultMap type="com.ddu.project.dto.NoticeDto" id="noticeWithMember">
+	<id property="bnum" column="bnum"/>
+		<result property="btitle" column="btitle"/>
+   		<result property="bcontent" column="bcontent"/>
+   		<result property="memberid" column="bwriter"/>
+   		<result property="bhit" column="bhit"/>
+   		<result property="bdate" column="bdate"/>
+	<association property="memberDto" javaType="com.ddu.project.dto.MemberDto">
+ 			<id property="memberid" column="memberid"/>
+ 			<result property="memberpw" column="memberpw"/>
+ 			<result property="membername" column="membername"/>
+ 			<result property="memberphone" column="memberphone"/>
+	 </association>
+	 <!-- <collection property="commentDtos" ofType="com.ddu.project.dto.CommentDto">
+	 <id property="cnum" column="cnum"/>
+   		<result property="memberid" column="memberid"/>
+   		<result property="ctext" column="ctext"/>
+   		<result property="cdate" column="cdate"/>
+   		<result property="bnum" column="bnum"/>
+	<association property="memberDto" javaType="com.ddu.project.dto.MemberDto">
+ 			<id property="memberid" column="memberid"/>
+ 			<result property="memberpw" column="memberpw"/>
+ 			<result property="membername" column="membername"/>
+ 			<result property="memberphone" column="memberphone"/>
+	 </association>
+	 </collection> -->
+ </resultMap>
+
+<select id="contentViewDao" resultMap="noticeWithMember" >
+	SELECT m.membername,m.memberid,n.bhit, n.bdate, n.btitle, n.bcontent FROM noticetbl n INNER JOIN memberstbl m on n.memberid = m.memberid WHERE n.bnum=#{bnum}
+</select>
+
+<update id="upBhitDao">
+	UPDATE noticetbl SET bhit = bhit +1 WHERE bnum=#{bnum}
+</update>
+
+<update id="boardModifyDao">
+	UPDATE noticetbl SET btitle = #{param1}, bcontent=#{param2} WHERE bnum=#{param3}
+</update>
+
+<delete id="boardDeleteDao">
+	DELETE FROM noticetbl WHERE bnum=#{bnum}
+</delete>
+
+<select id="pageListDao" resultMap="noticeWithMember">
+    	<![CDATA[
+    	SELECT * FROM 
+    		(SELECT ROWNUM AS rnum, r.* FROM 
+    			(SELECT n.bnum, n.btitle,n.bcontent ,n.memberid, m.membername, n.bhit, n.bdate FROM noticetbl n 
+    				INNER JOIN memberstbl m on n.memberid = m.memberid ORDER BY n.bnum DESC) r 
+    					WHERE ROWNUM <=#{param2} )
+        WHERE rnum >=#{param1}
+        ]]>
+    	</select>
+
+</mapper>

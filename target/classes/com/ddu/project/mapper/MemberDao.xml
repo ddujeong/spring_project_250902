@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+ <mapper namespace="com.ddu.project.dao.MemberDao">
+ 	<insert id="memberJoinDao">
+ 		INSERT INTO memberstbl VALUES(#{param1},#{param2},#{param3},#{param4})
+ 	</insert>
+ 	
+ 	<select id="memberIdCheckDao" resultType="int" >
+ 		SELECT COUNT(*) FROM memberstbl WHERE memberid=#{param1}
+ 	</select>
+ 	
+ 	<select id="loginOkDao" resultType="int" >
+ 		SELECT COUNT(*) FROM memberstbl WHERE memberid=#{param1} AND memberpw=#{param2}
+ 	</select>
+ 	
+ 	<delete id="memberDeleteDao">
+ 		DELETE FROM memberstbl WHERE memberid=#{param1}
+ 	</delete>
+ 
+</mapper>

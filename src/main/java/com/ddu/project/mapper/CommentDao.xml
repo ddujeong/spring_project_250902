@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.ddu.project.dao.CommentDao">
+
+<insert id="commentWriteDao">
+	INSERT INTO commenttbl(cnum,ctext,memberid,bnum) VALUES(COMMENT_SEQ.nextval,#{param1},#{param2}, #{param3})
+</insert>
+<resultMap type="com.ddu.project.dto.CommentDto" id="commentWithMember">
+	<id property="cnum" column="cnum"/>
+   		<result property="memberid" column="memberid"/>
+   		<result property="ctext" column="ctext"/>
+   		<result property="cdate" column="cdate"/>
+   		<result property="bnum" column="bnum"/>
+	<association property="memberDto" javaType="com.ddu.project.dto.MemberDto">
+ 			<id property="memberid" column="memberid"/>
+ 			<result property="memberpw" column="memberpw"/>
+ 			<result property="membername" column="membername"/>
+ 			<result property="memberphone" column="memberphone"/>
+	 </association>
+ </resultMap>
+
+<select id="commentListDao" resultMap="commentWithMember">
+	SELECT c.memberid, m.membername, c.cdate, c.ctext FROM commenttbl c INNER JOIN memberstbl m on c.memberid = m.memberid WHERE c.bnum=#{bnum} ORDER BY c.cdate DESC
+</select>
+
+<!-- <select id="commentListDao" resultMap="commentWithMember">
+	SELECT * FROM commenttbl  WHERE bnum=#{bnum} ORDER BY cdate DESC
+</select> -->
+
+<select id="allCountDao" resultType="int">
+    		SELECT COUNT(*) FROM commenttbl
+</select>
+
+
+
+
+<update id="commentModifyDao">
+	UPDATE commenttbl SET btext = #{param1} WHERE cnum=#{param2}
+</update>
+
+<delete id="commentDeleteDao">
+	DELETE FROM commenttbl WHERE cnum=#{cnum}
+</delete>
+
+</mapper>
