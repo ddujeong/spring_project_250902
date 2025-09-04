@@ -28,7 +28,7 @@
       	<tr>
           <td>${nDto.bnum }</td>
           <td><a href="contentView?bnum=${nDto.bnum }">${nDto.btitle }</a></td>
-          <td>${nDto.memberid }</td>
+          <td>${nDto.memberDto.membername }</td>
           <td>
           <fmt:formatDate value="${nDto.bdate }" pattern="yyyy-MM-dd HH:mm"/>
           </td>

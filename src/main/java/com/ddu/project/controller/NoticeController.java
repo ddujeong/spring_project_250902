@@ -28,6 +28,7 @@ public class NoticeController {
 		int pageNum = 1; // 유저가 클릭한 페이지의 번호-> 현재 보이는 페이지 번호 (단 처음 게시판에 들어왔을때 1페이지를 보여야 하기때문)
 		int blockSize = 5; // 페이지 블럭에 표시될 페이지의 수 (<< < 1 , 2 , 3 , 4 , 5 > >>)
 		
+		
 		if (request.getParameter("pageNum") != null) {
 			pageNum = Integer.parseInt( request.getParameter("pageNum"));
 		}
@@ -37,8 +38,7 @@ public class NoticeController {
 		int endRow = pageNum * pageSize; // 페이징 되었을 때 행의 끝 번호 (1->10 , 2-> 20, 3-> 30)
 		
 		NoticeDao nDao = sqlSession.getMapper(NoticeDao.class);
-		List<NoticeDto> nDtos = nDao.boardListDao();
-		
+		List<NoticeDto> nDtos = nDao.pageListDao(startRow, endRow);
 		int totalPage = (int)Math.ceil((double)nDao.allCountDao() /pageSize);
 		int startPage = (((pageNum-1) / blockSize) *blockSize) + 1; 
 		int endPage = Math.min(startPage + (blockSize-1),totalPage );
@@ -50,6 +50,7 @@ public class NoticeController {
 		model.addAttribute("totalPage",totalPage);
 		model.addAttribute("pageNum",pageNum);
 		model.addAttribute("count",nDao.allCountDao());
+		
 		
 		return"notice";
 	}
@@ -154,8 +155,14 @@ public class NoticeController {
 		model.addAttribute("nDto",nDto);
 		model.addAttribute("cDtos",cDtos);
 		model.addAttribute("bnum",bnum);
+		model.addAttribute("commentCount",cDao.allCountDao(bnum));
 		
 		return"contentView";
+	}
+	@RequestMapping(value = "/map")
+	public String map(HttpSession session, Model model, HttpServletRequest request) {
+	
+		return"map";
 	}
 	
 	

@@ -403,12 +403,14 @@ button:active {
   color: #4a5a6a;
 }
 /* 댓글 수정, 삭제 버튼 */
+/* 댓글 수정, 삭제 버튼 */
 .comment-actions {
   margin-top: 10px;
   text-align: right;
 }
 
-.comment-actions a {
+.comment-actions a,
+.comment-actions button {
   font-size: 14px;
   font-weight: 600;
   margin-left: 10px;
@@ -418,6 +420,7 @@ button:active {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* 수정 버튼 */
 .comment-actions .btn-edit {
   background-color: #7ba9d6;
   color: white;
@@ -427,6 +430,7 @@ button:active {
   background-color: #5a8fc1;
 }
 
+/* 삭제 버튼 */
 .comment-actions .btn-delete {
   background-color: #e74c3c;
   color: white;
@@ -624,5 +628,36 @@ button:active {
   font-weight: 700;
   font-size: 18px;
   margin-bottom: 12px;
+}
+/* no-reservation만 살짝 텍스트 중앙 정렬, 간격만 보정 */
+.no-reservation {
+  text-align: center;
+  padding: 80px 40px; /* 기존 container 기본 패딩에서 위아래 넉넉히 */
+}
+
+.no-reservation h1 {
+  font-weight: 700;
+  font-size: 2.6rem;
+  color: #6998c4;
+  margin-bottom: 40px;
+  user-select: none;
+}
+
+.no-reservation .btn-write {
+  background: linear-gradient(135deg, #7ba9d6, #a7c0e8);
+  color: white;
+  font-weight: 700;
+  border-radius: 35px;
+  text-decoration: none;
+  box-shadow:
+    0 6px 14px rgba(123, 169, 214, 0.7),
+    0 0 25px rgba(167, 192, 232, 0.5);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+.container.no-reservation .btn:hover {
+  background: linear-gradient(135deg, #5a8fc1, #8bb0dc);
+  box-shadow:
+    0 8px 20px rgba(90, 143, 193, 0.9),
+    0 0 35px rgba(139, 176, 220, 0.6);
 }
 

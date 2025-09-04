@@ -1,0 +1,209 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 목요일-9월-04-2025   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence COMMENT_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "SYSTEM"."COMMENT_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 13 NOCACHE  NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence NOTICE_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "SYSTEM"."NOTICE_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 105 NOCACHE  NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence RESERVE_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "SYSTEM"."RESERVE_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 20 NOCACHE  NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence MEMBER_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "SYSTEM"."MEMBER_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 3 NOCACHE  NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Table COMMENTTBL
+--------------------------------------------------------
+
+  CREATE TABLE "SYSTEM"."COMMENTTBL" 
+   (	"CNUM" NUMBER, 
+	"MEMBERID" VARCHAR2(20 BYTE), 
+	"CTEXT" VARCHAR2(100 BYTE), 
+	"CDATE" TIMESTAMP (6) DEFAULT sysdate, 
+	"BNUM" NUMBER
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table MEMBERSTBL
+--------------------------------------------------------
+
+  CREATE TABLE "SYSTEM"."MEMBERSTBL" 
+   (	"MEMBERID" VARCHAR2(20 BYTE), 
+	"MEMBERPW" VARCHAR2(20 BYTE), 
+	"MEMBERNAME" VARCHAR2(20 BYTE), 
+	"MEMBERPHONE" VARCHAR2(20 BYTE)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table NOTICETBL
+--------------------------------------------------------
+
+  CREATE TABLE "SYSTEM"."NOTICETBL" 
+   (	"BNUM" NUMBER, 
+	"BTITLE" VARCHAR2(20 BYTE), 
+	"BCONTENT" VARCHAR2(20 BYTE), 
+	"MEMBERID" VARCHAR2(20 BYTE), 
+	"BHIT" VARCHAR2(20 BYTE) DEFAULT 0, 
+	"BDATE" DATE DEFAULT sysdate
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table RESERVETBL
+--------------------------------------------------------
+
+  CREATE TABLE "SYSTEM"."RESERVETBL" 
+   (	"RID" NUMBER, 
+	"MACHINE" VARCHAR2(20 BYTE), 
+	"RDATETIME" TIMESTAMP (6), 
+	"STATUS" VARCHAR2(20 BYTE) DEFAULT 'reserved', 
+	"MEMBERID" VARCHAR2(20 BYTE), 
+	"RESERVETIME" TIMESTAMP (6) DEFAULT sysdate
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+REM INSERTING into SYSTEM.COMMENTTBL
+SET DEFINE OFF;
+Insert into SYSTEM.COMMENTTBL (CNUM,MEMBERID,CTEXT,CDATE,BNUM) values (9,'tiger','반가워!댓글 수정!!!',to_timestamp('25/09/04 09:11:14.000000000','RR/MM/DD HH24:MI:SSXFF'),104);
+Insert into SYSTEM.COMMENTTBL (CNUM,MEMBERID,CTEXT,CDATE,BNUM) values (10,'tiger','tiger입니다!!~',to_timestamp('25/09/04 09:13:16.000000000','RR/MM/DD HH24:MI:SSXFF'),104);
+Insert into SYSTEM.COMMENTTBL (CNUM,MEMBERID,CTEXT,CDATE,BNUM) values (3,'ddu','방가',to_timestamp('25/09/03 15:35:40.000000000','RR/MM/DD HH24:MI:SSXFF'),2);
+Insert into SYSTEM.COMMENTTBL (CNUM,MEMBERID,CTEXT,CDATE,BNUM) values (4,'ddu','하이',to_timestamp('25/09/03 15:41:14.000000000','RR/MM/DD HH24:MI:SSXFF'),0);
+Insert into SYSTEM.COMMENTTBL (CNUM,MEMBERID,CTEXT,CDATE,BNUM) values (5,'ddu','안녕!!수정
+',to_timestamp('25/09/03 15:44:35.000000000','RR/MM/DD HH24:MI:SSXFF'),2);
+Insert into SYSTEM.COMMENTTBL (CNUM,MEMBERID,CTEXT,CDATE,BNUM) values (11,'tiger','세번째 댓글 입니당!',to_timestamp('25/09/04 09:13:25.000000000','RR/MM/DD HH24:MI:SSXFF'),104);
+REM INSERTING into SYSTEM.MEMBERSTBL
+SET DEFINE OFF;
+Insert into SYSTEM.MEMBERSTBL (MEMBERID,MEMBERPW,MEMBERNAME,MEMBERPHONE) values ('ddu','11111','한수정','01077027428');
+Insert into SYSTEM.MEMBERSTBL (MEMBERID,MEMBERPW,MEMBERNAME,MEMBERPHONE) values ('tiger','11111','홍길동','01012341234');
+REM INSERTING into SYSTEM.NOTICETBL
+SET DEFINE OFF;
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (3,'반가워','반갑습니다','ddu','33',to_date('25/09/03','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (2,'글 작성했어요','안녕','ddu','274',to_date('25/09/03','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (4,'1번글','1번 내용','tiger','1',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (5,'2번글','2번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (6,'3번글','3번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (7,'4번글','4번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (8,'5번글','5번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (9,'6번글','6번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (10,'7번글','7번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (11,'8번글','8번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (12,'9번글','9번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (13,'10번글','10번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (14,'11번글','11번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (15,'12번글','12번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (16,'13번글','13번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (17,'14번글','14번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (18,'15번글','15번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (19,'16번글','16번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (20,'17번글','17번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (21,'18번글','18번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (22,'19번글','19번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (23,'20번글','20번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (24,'21번글','21번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (25,'22번글','22번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (26,'23번글','23번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (27,'24번글','24번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (28,'25번글','25번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (29,'26번글','26번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (30,'27번글','27번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (31,'28번글','28번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (32,'29번글','29번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (33,'30번글','30번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (34,'31번글','31번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (35,'32번글','32번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (36,'33번글','33번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (37,'34번글','34번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (38,'35번글','35번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (39,'36번글','36번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (40,'37번글','37번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (41,'38번글','38번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (42,'39번글','39번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (43,'40번글','40번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (44,'41번글','41번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (45,'42번글','42번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (46,'43번글','43번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (47,'44번글','44번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (48,'45번글','45번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (49,'46번글','46번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (50,'47번글','47번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (51,'48번글','48번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (52,'49번글','49번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (53,'50번글','50번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (54,'51번글','51번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (55,'52번글','52번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (56,'53번글','53번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (57,'54번글','54번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (58,'55번글','55번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (59,'56번글','56번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (60,'57번글','57번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (61,'58번글','58번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (62,'59번글','59번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (63,'60번글','60번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (64,'61번글','61번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (65,'62번글','62번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (66,'63번글','63번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (67,'64번글','64번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (68,'65번글','65번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (69,'66번글','66번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (70,'67번글','67번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (71,'68번글','68번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (72,'69번글','69번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (73,'70번글','70번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (74,'71번글','71번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (75,'72번글','72번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (76,'73번글','73번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (77,'74번글','74번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (78,'75번글','75번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (79,'76번글','76번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (80,'77번글','77번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (81,'78번글','78번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (82,'79번글','79번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (83,'80번글','80번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (84,'81번글','81번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (85,'82번글','82번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (86,'83번글','83번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (87,'84번글','84번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (88,'85번글','85번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (89,'86번글','86번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (90,'87번글','87번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (91,'88번글','88번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (92,'89번글','89번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (93,'90번글','90번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (94,'91번글','91번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (95,'92번글','92번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (96,'93번글','93번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (97,'94번글','94번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (98,'95번글','95번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (99,'96번글','96번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (100,'97번글','97번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (101,'98번글','98번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (102,'99번글','99번 내용','tiger','0',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (103,'100번글','100번 내용','tiger','1',to_date('25/09/04','RR/MM/DD'));
+Insert into SYSTEM.NOTICETBL (BNUM,BTITLE,BCONTENT,MEMBERID,BHIT,BDATE) values (104,'하이','안녕!','tiger','30',to_date('25/09/04','RR/MM/DD'));
+REM INSERTING into SYSTEM.RESERVETBL
+SET DEFINE OFF;
+Insert into SYSTEM.RESERVETBL (RID,MACHINE,RDATETIME,STATUS,MEMBERID,RESERVETIME) values (11,'세탁기',to_timestamp('25/09/16 12:00:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'reserved','ddu',to_timestamp('25/09/03 11:12:46.000000000','RR/MM/DD HH24:MI:SSXFF'));
+Insert into SYSTEM.RESERVETBL (RID,MACHINE,RDATETIME,STATUS,MEMBERID,RESERVETIME) values (13,'세탁기',to_timestamp('25/09/03 14:00:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'reserved','ddu',to_timestamp('25/09/03 11:30:44.000000000','RR/MM/DD HH24:MI:SSXFF'));
+Insert into SYSTEM.RESERVETBL (RID,MACHINE,RDATETIME,STATUS,MEMBERID,RESERVETIME) values (14,'세탁기',to_timestamp('25/09/03 15:00:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'reserved','ddu',to_timestamp('25/09/03 11:30:57.000000000','RR/MM/DD HH24:MI:SSXFF'));
+Insert into SYSTEM.RESERVETBL (RID,MACHINE,RDATETIME,STATUS,MEMBERID,RESERVETIME) values (5,'세탁기',to_timestamp('25/09/23 13:00:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'reserved','ddu',to_timestamp('25/09/03 10:00:06.000000000','RR/MM/DD HH24:MI:SSXFF'));
+Insert into SYSTEM.RESERVETBL (RID,MACHINE,RDATETIME,STATUS,MEMBERID,RESERVETIME) values (6,'탈수기',to_timestamp('25/09/03 12:00:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'reserved','ddu',to_timestamp('25/09/03 10:44:19.000000000','RR/MM/DD HH24:MI:SSXFF'));
+Insert into SYSTEM.RESERVETBL (RID,MACHINE,RDATETIME,STATUS,MEMBERID,RESERVETIME) values (15,'세탁기',to_timestamp('25/09/03 16:00:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'reserved','ddu',to_timestamp('25/09/03 12:49:12.000000000','RR/MM/DD HH24:MI:SSXFF'));
+Insert into SYSTEM.RESERVETBL (RID,MACHINE,RDATETIME,STATUS,MEMBERID,RESERVETIME) values (17,'세탁기',to_timestamp('25/09/03 11:00:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'reserved','ddu',to_timestamp('25/09/03 12:54:05.000000000','RR/MM/DD HH24:MI:SSXFF'));
+Insert into SYSTEM.RESERVETBL (RID,MACHINE,RDATETIME,STATUS,MEMBERID,RESERVETIME) values (18,'세탁기',to_timestamp('25/09/13 12:00:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'reserved','ddu',to_timestamp('25/09/03 13:34:46.000000000','RR/MM/DD HH24:MI:SSXFF'));
+Insert into SYSTEM.RESERVETBL (RID,MACHINE,RDATETIME,STATUS,MEMBERID,RESERVETIME) values (19,'건조기',to_timestamp('25/09/03 12:00:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'reserved','ddu',to_timestamp('25/09/03 13:48:13.000000000','RR/MM/DD HH24:MI:SSXFF'));

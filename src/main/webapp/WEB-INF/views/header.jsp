@@ -11,10 +11,12 @@
     <c:when test="${sessionScope.sessionId == null }">
     <li><a href="login" >로그인</a></li>
     <li><a href="join" >회원가입</a></li>
+    <li><a href="map" >오시는길</a></li>
     </c:when>
     <c:otherwise>
     <li><a href="orders" >예약확인</a></li>
     <li><a href="logout" >로그아웃</a></li>
+    <li><a href="map" >오시는길</a></li>
     </c:otherwise>
     </c:choose>
   </ul>

@@ -14,6 +14,8 @@
   <div class="container">
     <h2>내 예약 목록</h2>
     <table class="table">
+     <c:choose>
+     <c:when test="${not empty rDtos}">
       <thead>
         <tr>
           <th>예약 번호</th>
@@ -44,6 +46,14 @@
           </c:if>
         </tr>
         </c:forEach>
+        </c:when>
+         <c:otherwise>
+         <div class="container no-reservation">
+         	<h3>아직 예약이 없습니다!</h3><br>
+          	<a href="reservation" class="btn-write" >예약하러 가기</a>
+          	</div>
+        </c:otherwise>
+        </c:choose>
       </tbody>
     </table>
      <form action="memberDelete" method="post" onsubmit="return confirm('정말 탈퇴하시겠습니까?');" style="margin-top: 20px;">

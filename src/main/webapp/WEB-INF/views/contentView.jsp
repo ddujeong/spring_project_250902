@@ -28,18 +28,28 @@
    <!-- 댓글 폼 추가 -->
   <div class="comment-section">
     <h4>댓글 작성</h4>
+    <c:choose>
+    <c:when test="${sessionScope.sessionId == null}">
     <form action="commentOk" method="post" class="comment-form">
     
       <input type="hidden" name="bnum" value="${bnum}" /> <!-- 게시글 번호 -->
-      <textarea name="ctext" placeholder="댓글을 입력하세요..." rows="4" required></textarea>
-      <button type="submit" class="btn">댓글 작성</button>
-      
+      <textarea name="ctext" placeholder="로그인 후 작성가능합니다" rows="4" required readonly="readonly"></textarea>
     </form>
+    </c:when>
+    <c:otherwise>
+    <form action="commentOk" method="post" class="comment-form">
+    
+      <input type="hidden" name="bnum" value="${bnum}" /> <!-- 게시글 번호 -->
+      <textarea name="ctext" placeholder="댓글을 작성해주세요..." rows="4" required></textarea>
+      <button type="submit" class="btn">댓글 작성</button>
+    </form>
+    </c:otherwise>
+    </c:choose>
   </div>
 
   <!-- 댓글 목록 -->
   <div class="comments-list">
-    <h4>댓글 목록</h4>
+    <h4>댓글 목록[${cDtos.size()}]</h4>
     <c:forEach var="cDto" items="${cDtos}">
       <div class="comment-item">
         <div class="comment-info">
@@ -51,10 +61,12 @@
         <p class="comment-content">${cDto.ctext}</p>
          <c:if test="${cDto.memberid == sessionScope.sessionId}">
         <div class="comment-actions">
-          <a href="commentModify?cnum=${cDto.cnum}" class="btn-edit">수정</a>
-          <a href="commentDelete?cnum=${cDto.cnum}" class="btn-delete" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+        <input type="hidden" name="bnum" value="${bnum}" /> <!-- 게시글 번호 -->
+          <a href="commentModify?cnum=${cDto.cnum}&bnum=${bnum}" class="btn-edit">수정</a>
+          <a href="commentDelete?cnum=${cDto.cnum}&bnum=${bnum}" class="btn-delete" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
         </div>
-      </c:if>
+        </c:if>
+      
       </div>
      
     </c:forEach>

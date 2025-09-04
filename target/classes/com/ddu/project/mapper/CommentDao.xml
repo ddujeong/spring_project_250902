@@ -24,7 +24,7 @@
  </resultMap>
 
 <select id="commentListDao" resultMap="commentWithMember">
-	SELECT c.memberid, m.membername, c.cdate, c.ctext FROM commenttbl c INNER JOIN memberstbl m on c.memberid = m.memberid WHERE c.bnum=#{bnum} ORDER BY c.cdate DESC
+	SELECT c.memberid, m.membername, c.cdate, c.ctext, c.cnum FROM commenttbl c INNER JOIN memberstbl m on c.memberid = m.memberid WHERE c.bnum=#{bnum} ORDER BY c.cdate DESC
 </select>
 
 <!-- <select id="commentListDao" resultMap="commentWithMember">
@@ -35,11 +35,8 @@
     		SELECT COUNT(*) FROM commenttbl
 </select>
 
-
-
-
 <update id="commentModifyDao">
-	UPDATE commenttbl SET btext = #{param1} WHERE cnum=#{param2}
+	UPDATE commenttbl SET ctext = #{ctext} WHERE cnum=#{cnum}
 </update>
 
 <delete id="commentDeleteDao">

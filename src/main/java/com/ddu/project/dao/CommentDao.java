@@ -18,6 +18,6 @@ public int commentWriteDao(String ctext, String memberid, int bnum);
 	
 	public int allCountDao(int bnum);
 	
-	public int commentModifyDao(String ctext, int cnum);
+	public int commentModifyDao(@Param("ctext") String ctext,@Param("cnum")  int cnum);
 	
 }

@@ -6,18 +6,6 @@
     
 <mapper namespace="com.ddu.project.dao.NoticeDao">
 
-<insert id="boardWriteDao">
-	INSERT INTO noticetbl(bnum,btitle, memberid, bcontent) VALUES(NOTICE_SEQ.nextval,#{param1},#{param2},#{param3})
-</insert>
-
-<select id="boardListDao" resultType="com.ddu.project.dto.NoticeDto">
-	SELECT * FROM noticetbl
-</select>
-
-<select id="allCountDao" resultType="int">
-    		SELECT COUNT(*) FROM noticetbl
-</select>
-
 <resultMap type="com.ddu.project.dto.NoticeDto" id="noticeWithMember">
 	<id property="bnum" column="bnum"/>
 		<result property="btitle" column="btitle"/>
@@ -45,6 +33,18 @@
 	 </association>
 	 </collection> -->
  </resultMap>
+
+<insert id="boardWriteDao">
+	INSERT INTO noticetbl(bnum,btitle, memberid, bcontent) VALUES(NOTICE_SEQ.nextval,#{param1},#{param2},#{param3})
+</insert>
+
+<select id="boardListDao" resultMap="noticeWithMember">
+	SELECT n.bnum, n.btitle,n.bcontent ,n.memberid, m.membername, n.bhit, n.bdate FROM noticetbl n INNER JOIN memberstbl m on n.memberid = m.memberid ORDER BY n.bnum DESC
+</select>
+
+<select id="allCountDao" resultType="int">
+    		SELECT COUNT(*) FROM noticetbl
+</select>
 
 <select id="contentViewDao" resultMap="noticeWithMember" >
 	SELECT m.membername,m.memberid,n.bhit, n.bdate, n.btitle, n.bcontent FROM noticetbl n INNER JOIN memberstbl m on n.memberid = m.memberid WHERE n.bnum=#{bnum}
