@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="resources/css/style.css" />
 <nav class="navbar">
   <ul>
+  	<li><a href="index">홈으로</a></li>
     <li><a href="reservation">예약하기</a></li>
     <li><a href="notice">게시판</a></li>
     <c:choose>

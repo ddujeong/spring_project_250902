@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="container main-container">
-    <h1>키오스크</h1>
+    <h1>세탁기 돌릴 시간! 👕🌀</h1>
     <a href="reservation" class="btn">예약하기</a>
     <a href="notice" class="btn">게시판</a>
     <c:choose>
